@@ -1,0 +1,16 @@
+<h1>Создание новой роли</h1>
+
+<p>
+  <%= link_to("Перейти к списку ролей", roles_path) %>
+</p>
+
+<%= form_for @role do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

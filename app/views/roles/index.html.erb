@@ -1,0 +1,20 @@
+<h1>Список ролей</h1>
+ 
+<p>
+  <%= link_to("Добавить новую роль", new_role_path) %> | 
+  <%= link_to("Перейти к пользователям", users_path) %>
+</p>
+
+<table>
+  <tr>
+    <th>Название роли</th>
+  </tr>
+ 
+  <% @roles.each do |r| %>
+    <tr>
+      <td><%= r.name %></td>
+      <td><%= link_to("Изменить", edit_role_path(r)) %></td>
+      <td><%= link_to("Удалить", role_path(r), method: :delete) %></td>
+    </tr>
+  <% end %>
+</table>

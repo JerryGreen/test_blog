@@ -1,0 +1,25 @@
+<h1>Список пользователей</h1>
+ 
+<p>
+  <%= link_to("Добавить нового пользователя", new_user_path) %> | 
+  <%= link_to("Изменение ролей", roles_path) %>
+</p>
+
+<table>
+  <tr>
+    <th>Имя</th>
+    <th>Email</th>
+    <th>Роль</th>
+  </tr>
+ 
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.role.name %></td>
+      <td><%= link_to("Изменить", edit_user_path(user)) %></td>
+      <td><%= link_to("Просмотреть", user_path(user)) %></td>
+      <td><%= link_to("Удалить", user_path(user), method: :delete) %></td>
+    </tr>
+  <% end %>
+</table>
