@@ -1,1 +1,20 @@
-<h1>Тут будут проекты</h1>
+<h1>Проекты</h1>
+
+<hr/>
+
+<p>
+  <%= link_to("Создать проект", new_project_path) %>
+</p>
+
+<hr/>
+
+<% if @projects.any? %>
+  <% @projects.each do |project| %>
+    <div>
+      <h4><%= project.name %></h4>
+      <p><%= project.description %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>У вас пока нет проектов.</p>
+<% end %>

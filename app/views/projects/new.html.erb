@@ -1,0 +1,21 @@
+<h1><%= link_to("Проекты", projects_path) %> &raquo; Создать проект</h1>
+
+<hr/>
+
+<%= form_for @project do |f| %>
+
+  <p>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br/>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+  <%= f.submit %>
+  </p>
+
+<% end %>
