@@ -1,4 +1,8 @@
 class ProjectsController < ApplicationController
+  # before_action :authenticate_user!
+
+  before_filter :authenticate_user!
+
   def index
     @projects = Project.all
   end
