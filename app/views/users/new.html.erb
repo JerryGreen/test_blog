@@ -1,8 +1,4 @@
-<h1>Создание нового пользователя</h1>
-
-<p>
-  <%= link_to("Перейти к списку пользователей", users_path) %>
-</p>
+<h1><%= link_to("Пользователи", users_path) %> &raquo; Новый пользователь</h1>
 
 <%= form_for @user do |f| %>
   <p>
@@ -15,10 +11,10 @@
     <%= f.email_field :email %>
   </p>
  
-  <p>
-    <%= f.label :role_id %><br/>
-    <%= f.select :role_id, options_for_select(Role.all.map{|r| [r.name, r.id]}) %>
-  </p>
+  <!-- <p>
+    <%#= f.label :role_id %><br/>
+    <%#= f.select :role_id, options_for_select(Role.all.map{|r| [r.name, r.id]}) %>
+  </p> -->
 
   <p>
     <%= f.submit %>

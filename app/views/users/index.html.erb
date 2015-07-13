@@ -1,9 +1,12 @@
-<h1>Список пользователей</h1>
- 
+<h1>Пользователи</h1>
+
+<hr/>
+
 <p>
-  <%= link_to("Добавить нового пользователя", new_user_path) %> | 
-  <%= link_to("Изменение ролей", roles_path) %>
+  <%= link_to("Добавить нового пользователя", new_user_path) %>
 </p>
+
+<hr/>
 
 <table>
   <tr>
@@ -16,7 +19,8 @@
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
-      <td><%= user.role.name %></td>
+      <!--<td><%#= user.role.name %></td> -->
+      <td>???</td>
       <td><%= link_to("Изменить", edit_user_path(user)) %></td>
       <td><%= link_to("Просмотреть", user_path(user)) %></td>
       <td><%= link_to("Удалить", user_path(user), method: :delete) %></td>
