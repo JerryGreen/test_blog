@@ -1,3 +1,7 @@
+<h1><%= link_to("Пользователи", users_path) %> &raquo; <%= @user.email %></h1>
+
+<hr/>
+
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -12,8 +16,4 @@
   <strong>Роль:</strong>
   <!-- <%#= @user.role.name %> -->
   ???
-</p>
-
-<p>
-  <%= link_to("Перейти к полному списку пользователей", users_path) %>
 </p>

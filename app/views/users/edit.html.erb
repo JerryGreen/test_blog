@@ -1,8 +1,6 @@
-<h1>Изменение данных пользователя</h1>
+<h1><%= link_to("Пользователи", users_path) %> &raquo; Изменить</h1>
 
-<p>
-  <%= link_to("Перейти к полному списку пользователей", users_path) %>
-</p>
+<hr/>
 
 <% if @user.errors.any? %>
   <div id="error_explanation">
@@ -31,8 +29,8 @@
   </p>
 
   <!-- <p>
-    <%#= f.label :role_id %><br/>
-    <%#= f.select :role_id, options_for_select(Role.all.map{|r| [r.name, r.id]}, selected: @user.role.id) %>
+    <%#= f.label :role %><br/>
+    <%#= f.select :role_id, options_for_select(User::ROLES.map{|r| [r, r]}, selected: @user.role.id) %>
   </p> -->
  
   <p>
