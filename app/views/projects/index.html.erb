@@ -10,11 +10,13 @@
 <hr/>
 
 <% if @projects.any? %>
-  <% @projects.each do |project| %>
+  <% @projects.reverse_each do |project| %>
     <div>
       <h4><%= project.name %></h4>
+      <p><i>Автор: <%= project.user.name %></i></p>
       <p><%= project.description %></p>
     </div>
+    <br/>
   <% end %>
 <% else %>
   <p>У вас пока нет проектов.</p>

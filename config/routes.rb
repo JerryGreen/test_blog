@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   # REST
 
   resources :users
-  resources :roles
   resources :projects
 
   root :to => 'projects#index'
