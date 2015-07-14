@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :projects
 
-  def role? role
-  end
+  # def role? role
+  # end
 
 end

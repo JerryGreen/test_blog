@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+# before_filter :configure_sign_up_params, only: [:name]
+# before_filter :configure_account_update_params, only: [:name]
 
   # GET /resource/sign_up
   # def new
@@ -38,14 +38,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
+  # # If you have extra params to permit, append them to the sanitizer.
+  # def sign_up_params
+  #   devise_parameter_sanitizer(:name)
   # end
 
-  # If you have extra params to permit, append them to the sanitizer.
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.for(:sign_up) << :name
+  # end
+
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.for(:account_update) << :name
+  # end
+
+  # # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
-  #   devise_parameter_sanitizer.for(:account_update) << :attribute
+  #   devise_parameter_sanitizer.for(:account_update) << :name
   # end
 
   # The path used after sign up.
@@ -57,4 +65,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def sign_up_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def account_update_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
+  end
+
 end
