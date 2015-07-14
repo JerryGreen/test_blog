@@ -12,6 +12,10 @@ class ProjectsController < ApplicationController
     @project.user_id = current_user.id
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
   def create
     @project = Project.new user_params
 
@@ -22,8 +26,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def update
+    @project = Project.find(params[:id])
+   
+    if @project.update(user_params)
+      redirect_to projects_path
+    else
+      render 'edit'
+    end
+  end
+
   private
     def user_params
-      params[:project].permit(:name, :description, :id, :user_id)
+      params[:project].permit(:name, :description, :user_id)
     end
 end
