@@ -16,7 +16,7 @@
   </div>
 <% end %>
 
-<% if can? :update, Project %>
+<% if can? :update, @project %>
   
   <%= form_for @project do |f| %>
  
@@ -35,4 +35,6 @@
   </p>
 
   <% end %>
+<% else %>
+  <p>У вас нет прав на данное действие!</p>
 <% end %>
