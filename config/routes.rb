@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  # Devise gem
-  
-  devise_for :users, :controllers => { registrations: 'users/registrations' }
+  # Root page
+  root 'projects#index'
+  # root :to => 'projects#index' # альтернативный способ
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -14,11 +14,13 @@ Rails.application.routes.draw do
   # get 'products/:id' => 'catalog#view'
 
   # REST
-
-  resources :users
+  namespace :admin do
+    resources :users
+  end
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
   resources :projects
 
-  root :to => 'projects#index'
+  
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

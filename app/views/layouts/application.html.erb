@@ -14,7 +14,10 @@
 
 <% if user_signed_in? %>
   <p>
-    Здравствуй, <strong><%= current_user.name %></strong>! <% if notice %><%= notice %><% end %> [<%= link_to 'Изменить профиль', edit_user_registration_path %> | <%= link_to "Выйти", destroy_user_session_path, method: :delete  %>]
+    Здравствуй, <strong><%= current_user.name %></strong>!
+    <% if notice %><%= notice %><% end %>
+    [<%= link_to 'Просмотреть профиль', admin_user_path(current_user.id) %> |
+    <%= link_to "Выйти", destroy_user_session_path, method: :delete  %>]
   </p>
 <% end %>
 

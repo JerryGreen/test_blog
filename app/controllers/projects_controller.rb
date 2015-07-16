@@ -1,10 +1,18 @@
 class ProjectsController < ApplicationController
   # before_action :authenticate_user!
 
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
+
+  # load_and_authorize_resource
 
   def index
     @projects = Project.all
+    @users = User.all
+    # authorize! :read, @projects
+  end
+
+  def show
+    @project = Project.find(params[:id])
   end
 
   def new
@@ -34,6 +42,12 @@ class ProjectsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    redirect_to projects_path
   end
 
   private

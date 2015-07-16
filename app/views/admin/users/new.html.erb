@@ -1,0 +1,50 @@
+<h1><%= link_to("Пользователи", admin_users_path) %> &raquo; Новый пользователь</h1>
+
+<hr/>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@user.errors.count, "error") %> prohibited
+      this user from being saved:
+    </h2>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for [:admin, @user] do |f| %>
+  <p>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name, autofocus: true %>
+  </p>
+ 
+  <p>
+    <%= f.label :email %><br/>
+    <%= f.email_field :email %>
+  </p>
+
+  <div class="field">
+    <%= f.label :password %><br/>
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <% if can? :manage, @user %>
+    <p>
+      <%= f.label :role, "Тип пользователя" %><br/>
+      <%= f.select :role, options_for_select(User::ROLES.map{|r| [r, r]}) %>
+    </p>
+  <% end %>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

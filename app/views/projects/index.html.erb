@@ -2,22 +2,40 @@
 
 <hr/>
 
-<p>
-  <%= link_to("Создать проект", new_project_path) %> | 
-  <%= link_to("Пользователи", users_path) %>
-</p>
+<% if can? :create, Project %>
+  <p>
+    <%= link_to("Новый проект", new_project_path) %>
+    <% if can? :manage, :all %>| <%= link_to("Пользователи", admin_users_path) %><% end %>
+  </p>
 
-<hr/>
+  <hr/>
+<% end %>
 
-<% if @projects.any? %>
-  <% @projects.reverse_each do |project| %>
-    <div>
-      <h4><%= project.name %></h4>
-      <p><i>Автор: <%= project.user.name %></i></p>
-      <p><%= project.description %></p>
-    </div>
-    <br/>
+<% if user_signed_in? %>
+  <% if can? :read, Project %>
+    <% if @projects.any? %>
+      <% @projects.reverse_each do |project| %>
+        <div>
+          <h4>
+            <%= project.name %>
+            <% if can? :update, project %>
+              [
+                <%= link_to("Редактировать", edit_project_path(project)) %>
+                <% if can? :destroy, project %>| <%= link_to("Удалить", project_path(project), method: :delete) %><% end %>
+              ]
+            <% end %>
+          </h4>
+          <p><i>Автор: <%= project.user.name %></i></p>
+          <p><%= project.description %></p>
+        </div>
+        <br/>
+      <% end %>
+    <% else %>
+      <p>У вас пока нет проектов.</p>
+    <% end %>
+  <% else %>
+    <p>У вас нет прав просматривать проекты.</p>
   <% end %>
 <% else %>
-  <p>У вас пока нет проектов.</p>
+    <p><%= link_to "Зарегистрируйтесь", new_user_registration_path %> или <%= link_to "войдите", new_user_session_path, :class => 'navbar-link'  %>, чтобы просматривать проекты.</p>
 <% end %>
